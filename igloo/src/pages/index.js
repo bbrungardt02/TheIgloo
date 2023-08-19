@@ -1,5 +1,6 @@
 import React from "react";
 import prisma from "../lib/prisma";
+import Footer from "@/app/components/Footer";
 
 const HomePage = ({ products }) => {
   return (
@@ -13,6 +14,7 @@ const HomePage = ({ products }) => {
           <li key={product.product_id}>{product.name}</li>
         ))}
       </ul>
+      <Footer />
     </div>
   );
 };
