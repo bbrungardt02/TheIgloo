@@ -11,21 +11,49 @@ datasource db {
   directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 }
 
-model Post {
-  id        String     @default(cuid()) @id
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User?   @relation(fields: [authorId], references: [id])
-  authorId  String?
+model User {
+  user_id    Int      @id @default(autoincrement())
+  username   String
+  email      String   @unique
+  password   String
+  created_at DateTime @default(now())
+  orders     Order[]
 }
 
-model User {
-  id            String       @default(cuid()) @id
-  name          String?
-  email         String?   @unique
-  createdAt     DateTime  @default(now()) @map(name: "created_at")
-  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
-  posts         Post[]
-  @@map(name: "users")
+model Product {
+  product_id     Int      @id @default(autoincrement())
+  name           String
+  description    String
+  price          Float
+  image_url      String
+  stock_quantity Int
+  category_id    Int
+  created_at     DateTime @default(now())
+  category       Category @relation(fields: [category_id], references: [category_id])
+  order_items    OrderItem[]
+}
+
+model Category {
+  category_id Int      @id @default(autoincrement())
+  name        String
+  products    Product[]
+}
+
+model Order {
+  order_id     Int       @id @default(autoincrement())
+  user_id      Int
+  order_date   DateTime  @default(now())
+  total_amount Float
+  user         User      @relation(fields: [user_id], references: [user_id])
+  order_items  OrderItem[]
+}
+
+model OrderItem {
+  order_item_id Int      @id @default(autoincrement())
+  order_id      Int
+  product_id    Int
+  quantity      Int
+  subtotal      Float
+  order         Order    @relation(fields: [order_id], references: [order_id])
+  product       Product  @relation(fields: [product_id], references: [product_id])
 }
