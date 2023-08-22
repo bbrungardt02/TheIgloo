@@ -11,6 +11,7 @@ export default function admin() {
       <h3>Products</h3>
       <h3>Categories</h3>
       <h3>All Orders</h3>
+      <h3>Inventory</h3>
     </div>
   );
 }

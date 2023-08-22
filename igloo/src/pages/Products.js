@@ -14,19 +14,24 @@ export default function Products() {
       });
   }, []);
 
+  // Filter products with category "jewelery"
+  const jeweleryProducts = data.filter(
+    (product) => product.category === "jewelery"
+  );
+
   return (
     <div>
       <p>Diamond grille</p>
       <div>
         <h1>Product List</h1>
 
-        {data.length === 0 ? (
-          <p>Loading...</p>
+        {jeweleryProducts.length === 0 ? (
+          <p>No jewelery products available.</p>
         ) : (
           <div>
-            {data.map((product) => (
+            {jeweleryProducts.map((product) => (
               <ul key={product.id}>
-                <>{product.title}</>
+                <li>{product.title}</li>
                 <li>{product.price}</li>
                 <li>{product.category}</li>
                 <li>
