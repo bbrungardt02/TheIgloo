@@ -1,4 +1,3 @@
-//create a footer component
 import React from "react";
 
 export default function Footer() {
