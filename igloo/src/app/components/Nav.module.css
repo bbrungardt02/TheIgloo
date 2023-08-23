@@ -19,3 +19,19 @@
   background-color: #c7e5e5;
   color: #333;
 }
+
+.login {
+  float: right;
+  display: block;
+  color: #000000;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+  border-top: 2px solid transparent;
+}
+
+.login:hover {
+  background-color: #c7e5e5;
+  color: #333;
+}
