@@ -1,23 +1,21 @@
 .navBar {
-  background-color: #333;
+  background-color: #a0bec4;
   overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.navBar div {
+.navItem {
   float: left;
   display: block;
-  color: white;
+  color: #ffffff;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+  border-top: 2px solid transparent;
 }
 
-.navBar div:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-.active {
-  background-color: #4caf50;
-  color: white;
+.navItem:hover {
+  background-color: #c7e5e5;
+  color: #333;
 }

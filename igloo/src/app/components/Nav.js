@@ -6,10 +6,10 @@ export default function Nav() {
   return (
     <nav className={styles.navBar}>
       <Link href="/">
-        <div>Home</div>
+        <div className={styles.navItem}>Home</div>
       </Link>
       <Link href="/products">
-        <div>Products</div>
+        <div className={styles.navItem}>Products</div>
       </Link>
     </nav>
   );

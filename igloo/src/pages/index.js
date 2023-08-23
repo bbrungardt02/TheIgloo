@@ -2,6 +2,7 @@ import React from "react";
 import prisma from "../lib/prisma";
 import Footer from "@/app/components/Footer";
 import Nav from "@/app/components/Nav";
+import "@/app/globals.css";
 
 const HomePage = ({ products }) => {
   return (
@@ -11,11 +12,29 @@ const HomePage = ({ products }) => {
       <p>Keepin it Icy since 1542</p>
 
       <h2>Featured Products</h2>
-      <ul>
-        {products.map((product) => (
-          <li key={product.product_id}>{product.name}</li>
-        ))}
-      </ul>
+      <div>
+        {products.length === 0 ? (
+          <p>No jewelery products available.</p>
+        ) : (
+          <div>
+            {products.map((product, index) => (
+              <ul key={index}>
+                <li>{product.name}</li>
+                <li>{product.description}</li>
+                <li>{product.price} USD</li>
+                <li>{product.subcategory.name}</li>
+                <li>
+                  <img
+                    src={product.image_url}
+                    alt="Item Image"
+                    className="w-24"
+                  />
+                </li>
+              </ul>
+            ))}
+          </div>
+        )}
+      </div>
       <Footer />
     </div>
   );
@@ -24,22 +43,18 @@ const HomePage = ({ products }) => {
 export async function getStaticProps() {
   const products = await prisma.product.findMany({
     where: { stock_quantity: { gt: 0 } },
-    include: {
-      category: true,
-      order_items: true,
+    select: {
+      product_id: true,
+      name: true,
+      description: true,
+      price: true,
+      subcategory: true,
+      image_url: true,
     },
   });
 
-  // Serialize Date objects to ISO 8601 strings
-  const serializableProducts = products.map((product) => {
-    return {
-      ...product,
-      created_at: product.created_at.toISOString(),
-    };
-  });
-
   return {
-    props: { products: serializableProducts },
+    props: { products },
     revalidate: 10,
   };
 }
