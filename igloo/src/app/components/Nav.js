@@ -130,9 +130,6 @@ export default function Nav() {
             <div className={styles.navItem}>Products</div>
           </button>
         </Link>
-        <Link href="/Home">
-          <div className={styles.navItem}>Home</div>
-        </Link>
         <style jsx>{`
           #bold {
             font-weight: bold;
