@@ -1,9 +1,11 @@
 import React from "react";
 import prisma from "../lib/prisma";
+import Nav from "@/app/components/Nav";
 
 export default function Home({ products }) {
   return (
     <div>
+      <Nav />
       <h1>The Igloo</h1>
       <p>Keepin' it Icy since 1542</p>
 

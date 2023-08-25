@@ -196,6 +196,13 @@ export default function Nav() {
     <nav className={styles.navBar}>
       {left}
       {right}
+      {/* <style jsx>{`
+        .navBar {
+          background-color: white;
+          padding: 1rem;
+          font-size: 16px;
+        }
+      `}</style> */}
     </nav>
   );
 }
