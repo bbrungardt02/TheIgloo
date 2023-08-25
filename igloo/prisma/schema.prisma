@@ -49,6 +49,8 @@ model User {
   orders        Order[]
   accounts      Account[]
   sessions      Session[]
+  isAdmin       Boolean   @default(false)
+
 }
 
 model VerificationToken {

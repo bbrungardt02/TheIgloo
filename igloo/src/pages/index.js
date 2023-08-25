@@ -1,5 +1,5 @@
 import React from "react";
-import prisma from "../lib/prisma";
+import { getStaticProps } from "./api/api";
 
 export default function Home({ products }) {
   return (
@@ -35,21 +35,4 @@ export default function Home({ products }) {
   );
 }
 
-export async function getStaticProps() {
-  const products = await prisma.product.findMany({
-    where: { stock_quantity: { gt: 0 } },
-    select: {
-      product_id: true,
-      name: true,
-      description: true,
-      price: true,
-      subcategory: true,
-      image_url: true,
-    },
-  });
-
-  return {
-    props: { products },
-    revalidate: 10,
-  };
-}
+export { getStaticProps }; // Export the data-fetching function

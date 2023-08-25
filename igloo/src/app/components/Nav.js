@@ -17,6 +17,7 @@ export default function Nav() {
           Home
         </div>
       </Link>
+
       <style jsx>{`
         div {
           text-decoration: none;
@@ -118,12 +119,17 @@ export default function Nav() {
           </div>
         </Link>
         <Link href="/products">
-          <button>
-            <div className={styles.navItem} data-active={isActive("/products")}>
-              Products
-            </div>
-          </button>
+          <div className={styles.navItem} data-active={isActive("/products")}>
+            Products
+          </div>
         </Link>
+        {/* Admin link /admin needs to be made only accessible to admins */}
+        <Link href="/admin">
+          <div className={styles.navItem} data-active={isActive("/admin")}>
+            Admin
+          </div>
+        </Link>
+
         <style jsx>{`
           div {
             color: var(--geist-foreground);
