@@ -9,10 +9,10 @@
   --text-color: #333333; /* Dark gray text */
 }
 
-/* Apply styles to the body element */
-body {
+/* Apply styles to the RootLayout */
+#rootLayout {
   font-family: Arial, sans-serif;
   color: var(--text-color);
   background-color: var(--primary-color);
-  transition: background-color 0.3s ease; /* Smooth transition for background color */
+  transition: background-color 0.3s ease;
 }
