@@ -13,15 +13,11 @@ export default function Nav() {
   let left = (
     <div className="left">
       <Link href="/">
-        <div className={styles.navItem} id="bold" data-active={isActive("/")}>
+        <div className={styles.navItem} data-active={isActive("/")}>
           Home
         </div>
       </Link>
       <style jsx>{`
-        #bold {
-          font-weight: bold;
-        }
-
         div {
           text-decoration: none;
           color: var(--geist-foreground);
@@ -29,7 +25,7 @@ export default function Nav() {
         }
 
         .left div[data-active="true"] {
-          color: gray;
+          color: aliceblue;
         }
 
         div + div {
@@ -45,15 +41,11 @@ export default function Nav() {
     left = (
       <div className="left">
         <Link href="/">
-          <div className={styles.navItem} id="bold" data-active={isActive("/")}>
+          <div className={styles.navItem} data-active={isActive("/")}>
             Home
           </div>
         </Link>
         <style jsx>{`
-          #bold {
-            font-weight: bold;
-          }
-
           div {
             color: var(--geist-foreground);
             display: inline-block;
@@ -62,7 +54,7 @@ export default function Nav() {
           }
 
           .left div[data-active="true"] {
-            color: gray;
+            color: aliceblue;
           }
         `}</style>
       </div>
@@ -121,20 +113,18 @@ export default function Nav() {
     left = (
       <div className="left">
         <Link href="/">
-          <div className={styles.navItem} id="bold" data-active={isActive("/")}>
+          <div className={styles.navItem} data-active={isActive("/")}>
             Home
           </div>
         </Link>
         <Link href="/products">
           <button>
-            <div className={styles.navItem}>Products</div>
+            <div className={styles.navItem} data-active={isActive("/products")}>
+              Products
+            </div>
           </button>
         </Link>
         <style jsx>{`
-          #bold {
-            font-weight: bold;
-          }
-
           div {
             color: var(--geist-foreground);
             display: inline-block;
@@ -143,7 +133,7 @@ export default function Nav() {
           }
 
           .left div[data-active="true"] {
-            color: gray;
+            color: aliceblue;
           }
         `}</style>
       </div>
@@ -193,6 +183,9 @@ export default function Nav() {
           button {
             border: none;
             margin-right: auto;
+          }
+          .right div[data-active="true"] {
+            color: aliceblue;
           }
         `}</style>
       </div>

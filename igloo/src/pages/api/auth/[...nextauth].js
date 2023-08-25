@@ -3,6 +3,7 @@ import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/lib/prisma";
+import loginPage from "@/pages/api/loginPage";
 
 const options = {
   providers: [
@@ -20,6 +21,9 @@ const options = {
   },
   adapter: PrismaAdapter(prisma),
   secret: process.env.SECRET,
+  pages: {
+    signIn: [loginPage],
+  },
 };
 
 const authHandler = (req, res) => NextAuth(req, res, options);
