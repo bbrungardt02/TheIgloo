@@ -14,7 +14,7 @@
 }
 
 /* Table styles */
-.table-container {
+.tableContainer {
   overflow-x: auto;
   margin-top: 20px;
 }
@@ -51,7 +51,7 @@
 }
 
 /* Error message */
-.error-message {
+.errorMessage {
   color: #ff0000;
   margin-top: 10px;
 }

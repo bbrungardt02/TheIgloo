@@ -85,7 +85,7 @@ export default function Admin({
       </div>
       <h1>Create Product</h1>
       <CreateProduct setMessage={setMessage} />
-      <p className={styles["error-message"]}>{message}</p>
+      <p className={styles.errorMessage}>{message}</p>
       <h1 className={styles.heading}>Subcategories</h1>
       <div className={styles.tableContainer}>
         <table className={styles.table}>
@@ -114,7 +114,7 @@ export default function Admin({
       </div>
       <h1>Create Subcategory</h1>
       <CreateSubcategory setMessage={setMessage} />
-      <p className={styles["error-message"]}>{message}</p>
+      <p className={styles.errorMessage}>{message}</p>
       <h1 className={styles.heading}>Categories</h1>
       <div className={styles.tableContainer}>
         <table className={styles.table}>
@@ -143,7 +143,7 @@ export default function Admin({
       </div>
       <h1>Create Category</h1>
       <CreateCategory setMessage={setMessage} />
-      <p className={styles["error-message"]}>{message}</p>
+      <p className={styles.errorMessage}>{message}</p>
       <h1 className={styles.heading}>All Orders</h1>
       {/* add search order feature */}
       <div className={styles.tableContainer}>
