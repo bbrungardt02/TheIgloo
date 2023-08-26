@@ -1,5 +1,6 @@
-import React from "react";
-import { getStaticProps } from "./api/api";
+import { useState } from "react";
+import { getStaticProps } from "./api/getStaticProps";
+import AdminForm from "./admin/adminForm";
 
 export default function Admin({
   users,
@@ -8,6 +9,8 @@ export default function Admin({
   orders,
   subcategories,
 }) {
+  const [message, setMessage] = useState("");
+
   // add search order feature
   // add search product feature
   return (
@@ -35,7 +38,6 @@ export default function Admin({
       </table>
       <h1>Products</h1>
       {/* add search product feature */}
-
       <table>
         <thead>
           <tr>
@@ -64,6 +66,10 @@ export default function Admin({
           ))}
         </tbody>
       </table>
+      <h1>Create Product</h1>
+      <AdminForm setMessage={setMessage} />{" "}
+      {/* Pass setMessage function as prop */}
+      <p>{message}</p>
       <h1>Subcategories</h1>
       <table>
         <thead>
@@ -98,10 +104,8 @@ export default function Admin({
           ))}
         </tbody>
       </table>
-
       <h1>All Orders</h1>
       {/* add search order feature */}
-
       <table>
         <thead>
           <tr>
@@ -122,7 +126,6 @@ export default function Admin({
           ))}
         </tbody>
       </table>
-
       <h1>Low Inventory ( &lt;15 )</h1>
       <table>
         <thead>

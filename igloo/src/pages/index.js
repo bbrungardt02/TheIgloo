@@ -1,5 +1,5 @@
 import React from "react";
-import { getStaticProps } from "./api/api";
+import { getStaticProps } from "./api/getStaticProps";
 
 export default function Home({ products }) {
   return (
