@@ -11,7 +11,7 @@ export default function CreateCategory({ setMessage }) {
     };
 
     try {
-      const response = await fetch("/api/categoryAPI", {
+      const response = await fetch("/api/createCategory", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

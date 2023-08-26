@@ -31,7 +31,7 @@ export default function CreateProduct({ setMessage }) {
     };
 
     try {
-      const response = await fetch("/api/productAPI", {
+      const response = await fetch("/api/createProduct", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

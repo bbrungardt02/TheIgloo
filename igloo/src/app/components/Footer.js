@@ -3,8 +3,10 @@ import styles from "@/app/components/Footer.module.css";
 
 export default function Footer() {
   return (
-    <footer className={styles.Footer}>
-      <p>© 2023 The Igloo</p>
-    </footer>
+    <div className={styles.FooterContainer}>
+      <footer className={styles.Footer}>
+        <p>© 2023 The Igloo</p>
+      </footer>
+    </div>
   );
 }
