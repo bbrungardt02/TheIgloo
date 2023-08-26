@@ -6,7 +6,7 @@ import CreateSubcategory from "./admin/createSubcategory";
 import DeleteProduct from "./admin/deleteProduct";
 import DeleteCategory from "./admin/deleteCategory";
 import DeleteSubcategory from "./admin/deleteSubcategory";
-import styles from "../styles/Admin.module.css";
+import styles from "../styles/admin.module.css";
 
 export default function Admin({
   users,

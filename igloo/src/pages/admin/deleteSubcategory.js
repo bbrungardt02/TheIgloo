@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "@/styles/admin.module.css";
 
 export default function DeleteSubcategory({ subcategoryId, setMessage }) {
   const handleDeleteSubcategory = async () => {
@@ -24,5 +25,9 @@ export default function DeleteSubcategory({ subcategoryId, setMessage }) {
     }
   };
 
-  return <button onClick={handleDeleteSubcategory}>Delete Subcategory</button>;
+  return (
+    <button className={styles.deleteButton} onClick={handleDeleteSubcategory}>
+      Delete Subcategory
+    </button>
+  );
 }

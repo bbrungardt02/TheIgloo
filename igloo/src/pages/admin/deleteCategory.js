@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "@/styles/admin.module.css";
 
 export default function DeleteCategory({ categoryId, setMessage }) {
   const handleDeleteCategory = async () => {
@@ -21,5 +22,9 @@ export default function DeleteCategory({ categoryId, setMessage }) {
     }
   };
 
-  return <button onClick={handleDeleteCategory}>Delete Category</button>;
+  return (
+    <button className={styles.deleteButton} onClick={handleDeleteCategory}>
+      Delete Category
+    </button>
+  );
 }

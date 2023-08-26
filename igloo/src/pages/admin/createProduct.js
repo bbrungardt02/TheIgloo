@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "@/styles/admin.module.css";
 
 export default function CreateProduct({ setMessage }) {
   const [name, setName] = useState("");
@@ -91,7 +92,9 @@ export default function CreateProduct({ setMessage }) {
         onChange={(e) => setCategoryID(e.target.value)}
         placeholder="CategoryID"
       />
-      <button type="submit">Create Product</button>
+      <button className={styles.createButton} type="submit">
+        Create Product
+      </button>
     </form>
   );
 }

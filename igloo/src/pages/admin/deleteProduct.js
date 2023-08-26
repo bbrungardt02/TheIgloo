@@ -1,5 +1,5 @@
 import React from "react";
-
+import styles from "@/styles/admin.module.css";
 export default function DeleteProduct({ productId, setMessage }) {
   const handleDeleteProduct = async () => {
     try {
@@ -21,5 +21,9 @@ export default function DeleteProduct({ productId, setMessage }) {
     }
   };
 
-  return <button onClick={handleDeleteProduct}>Delete Product</button>;
+  return (
+    <button className={styles.deleteButton} onClick={handleDeleteProduct}>
+      Delete Product
+    </button>
+  );
 }

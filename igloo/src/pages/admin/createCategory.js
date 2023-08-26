@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "@/styles/admin.module.css";
 
 export default function CreateCategory({ setMessage }) {
   const [name, setName] = useState("");
@@ -35,7 +36,9 @@ export default function CreateCategory({ setMessage }) {
         onChange={(e) => setName(e.target.value)}
         placeholder="Name"
       />
-      <button type="submit">Create Category</button>
+      <button className={styles.createButton} type="submit">
+        Create Category
+      </button>
     </form>
   );
 }

@@ -37,8 +37,21 @@
 }
 
 /* Button styles */
-.button {
+.deleteButton {
   padding: 8px 12px;
+  background-color: #fd0808;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.deleteButton:hover {
+  background-color: #cb0b0b;
+}
+
+.createButton {
+  padding: 8px 8px;
   background-color: #007bff;
   color: #fff;
   border: none;
@@ -46,7 +59,7 @@
   border-radius: 4px;
 }
 
-.button:hover {
+.createButton:hover {
   background-color: #0056b3;
 }
 
