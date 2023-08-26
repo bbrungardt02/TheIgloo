@@ -3,9 +3,9 @@ import { useState } from "react";
 function AdminForm({ setMessage }) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState("");
   const [image_url, setImage_url] = useState("");
-  const [stock_quantity, setStock_quantity] = useState(0);
+  const [stock_quantity, setStock_quantity] = useState("");
   const [subcategoryID, setSubcategoryID] = useState("");
   const [categoryID, setCategoryID] = useState("");
 
@@ -17,7 +17,7 @@ function AdminForm({ setMessage }) {
       description,
       price: parseFloat(price),
       image_url,
-      stock_quantity: parseFloat(stock_quantity),
+      stock_quantity: parseInt(stock_quantity),
       subcategory: {
         connect: {
           subcategory_id: parseInt(subcategoryID),
