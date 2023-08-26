@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function AdminForm({ setMessage }) {
+export default function CreateProduct({ setMessage }) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -95,5 +95,3 @@ function AdminForm({ setMessage }) {
     </form>
   );
 }
-
-export default AdminForm;

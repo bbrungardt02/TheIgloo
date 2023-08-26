@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { getStaticProps } from "./api/getStaticProps";
-import AdminForm from "./admin/adminForm";
+import CreateProduct from "./admin/createProduct";
+import CreateCategory from "./admin/createCategory";
+import CreateSubcategory from "./admin/createSubcategory";
 
 export default function Admin({
   users,
@@ -67,8 +69,7 @@ export default function Admin({
         </tbody>
       </table>
       <h1>Create Product</h1>
-      <AdminForm setMessage={setMessage} />{" "}
-      {/* Pass setMessage function as prop */}
+      <CreateProduct setMessage={setMessage} />
       <p>{message}</p>
       <h1>Subcategories</h1>
       <table>
@@ -87,6 +88,9 @@ export default function Admin({
           ))}
         </tbody>
       </table>
+      <h1>Create Subcategory</h1>
+      <CreateSubcategory setMessage={setMessage} />
+      <p>{message}</p>
       <h1>Categories</h1>
       <table>
         <thead>
@@ -104,6 +108,9 @@ export default function Admin({
           ))}
         </tbody>
       </table>
+      <h1>Create Category</h1>
+      <CreateCategory setMessage={setMessage} />
+      <p>{message}</p>
       <h1>All Orders</h1>
       {/* add search order feature */}
       <table>

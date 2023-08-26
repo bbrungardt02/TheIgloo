@@ -9,9 +9,7 @@ export default async function handler(req, res) {
       image_url,
       stock_quantity,
       subcategory,
-      //   subcategory_id,
       category,
-      //   category_id,
     } = req.body;
 
     try {
@@ -23,9 +21,7 @@ export default async function handler(req, res) {
           image_url,
           stock_quantity,
           subcategory,
-          //   subcategory_id,
           category,
-          //   category_id,
         },
       });
 
