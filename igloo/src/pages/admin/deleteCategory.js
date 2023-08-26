@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "@/styles/admin.module.css";
 
-export default function DeleteCategory({ categoryId, setMessage }) {
+export default function DeleteCategory({ categoryId, setCategoryMessage }) {
   const handleDeleteCategory = async () => {
     try {
       const response = await fetch(`/api/deleteCategory?id=${categoryId}`, {
@@ -9,16 +9,16 @@ export default function DeleteCategory({ categoryId, setMessage }) {
       });
 
       if (response.ok) {
-        setMessage("Category deleted successfully");
+        setCategoryMessage("Category deleted successfully");
 
         // Fetch the updated categories list here
         // You can call another function or API to update the categories list in the Admin component
       } else {
-        setMessage("Error deleting category");
+        setCategoryMessage("Error deleting category");
       }
     } catch (error) {
       console.error("Error:", error);
-      setMessage("Error deleting category");
+      setCategoryMessage("Error deleting category");
     }
   };
 

@@ -14,7 +14,7 @@ export default async function handler(req, res) {
       res.status(200).end();
     } catch (error) {
       console.error("Error deleting product:", error);
-      res.status(500).json({ message: "Error deleting product" });
+      res.status(500).json({ productMessage: "Error deleting product" });
     }
   } else {
     res.status(405).end();

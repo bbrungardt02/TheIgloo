@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "@/styles/admin.module.css";
 
-export default function CreateSubcategory({ setMessage }) {
+export default function CreateSubcategory({ setSubcategoryMessage }) {
   const [name, setName] = useState("");
 
   const handleSubmit = async (e) => {
@@ -21,10 +21,10 @@ export default function CreateSubcategory({ setMessage }) {
       });
 
       const data = await response.json();
-      setMessage(data.message); // Display success or error message
+      setSubcategoryMessage(data.subcategoryMessage); // Display success or error message
     } catch (error) {
       console.error("Error:", error);
-      setMessage("Error creating subcategory");
+      setSubcategoryMessage("Error creating subcategory");
     }
   };
 

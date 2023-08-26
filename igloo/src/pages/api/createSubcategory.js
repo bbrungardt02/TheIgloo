@@ -13,12 +13,17 @@ export default async function handler(req, res) {
 
       res
         .status(201)
-        .json({ message: "Subcategory created successfully", newSubcategory });
+        .json({
+          subcategoryMessage: "Subcategory created successfully",
+          newSubcategory,
+        });
     } catch (error) {
       console.error("Error creating subcategory:", error);
-      res.status(500).json({ message: "Error creating subcategory" });
+      res
+        .status(500)
+        .json({ subcategoryMessage: "Error creating subcategory" });
     }
   } else {
-    res.status(405).json({ message: "Method not allowed" });
+    res.status(405).json({ subcategoryMessage: "Method not allowed" });
   }
 }

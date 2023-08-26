@@ -14,7 +14,7 @@ export default async function handler(req, res) {
       res.status(200).end();
     } catch (error) {
       console.error("Error deleting category:", error);
-      res.status(500).json({ message: "Error deleting category" });
+      res.status(500).json({ categoryMessage: "Error deleting category" });
     }
   } else {
     res.status(405).end(); // Method not allowed

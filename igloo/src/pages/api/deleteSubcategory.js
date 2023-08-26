@@ -14,9 +14,11 @@ export default async function handler(req, res) {
       res.status(200).end();
     } catch (error) {
       console.error("Error deleting subcategory:", error);
-      res.status(500).json({ message: "Error deleting subcategory" });
+      res
+        .status(500)
+        .json({ subcategoryMessage: "Error deleting subcategory" });
     }
   } else {
-    res.status(405).end(); // Method not allowed
+    res.status(405).json({ subcategoryMessage: "Method not allowed" });
   }
 }

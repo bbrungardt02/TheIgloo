@@ -11,14 +11,15 @@ export default async function handler(req, res) {
         },
       });
 
-      res
-        .status(201)
-        .json({ message: "Category created successfully", newCategory });
+      res.status(201).json({
+        categoryMessage: "Category created successfully",
+        newCategory,
+      });
     } catch (error) {
       console.error("Error creating category:", error);
-      res.status(500).json({ message: "Error creating category" });
+      res.status(500).json({ categoryMessage: "Error creating category" });
     }
   } else {
-    res.status(405).json({ message: "Method not allowed" });
+    res.status(405).json({ categoryMessage: "Method not allowed" });
   }
 }

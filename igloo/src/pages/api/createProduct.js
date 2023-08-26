@@ -27,12 +27,12 @@ export default async function handler(req, res) {
 
       res
         .status(201)
-        .json({ message: "Product created successfully", newProduct });
+        .json({ productMessage: "Product created successfully", newProduct });
     } catch (error) {
       console.error("Error creating product:", error);
-      res.status(500).json({ message: "Error creating product" });
+      res.status(500).json({ productMessage: "Error creating product" });
     }
   } else {
-    res.status(405).json({ message: "Method not allowed" });
+    res.status(405).json({ productMessage: "Method not allowed" });
   }
 }

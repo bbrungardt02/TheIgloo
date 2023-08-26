@@ -15,7 +15,9 @@ export default function Admin({
   orders,
   subcategories,
 }) {
-  const [message, setMessage] = useState("");
+  const [productMessage, setProductMessage] = useState("");
+  const [subcategoryMessage, setSubcategoryMessage] = useState("");
+  const [categoryMessage, setCategoryMessage] = useState("");
 
   // add search order feature
   // add search product feature
@@ -75,7 +77,7 @@ export default function Admin({
                 <td>
                   <DeleteProduct
                     productId={product.product_id}
-                    setMessage={setMessage}
+                    setProductMessage={setProductMessage}
                   />
                 </td>
               </tr>
@@ -84,8 +86,16 @@ export default function Admin({
         </table>
       </div>
       <h1>Create Product</h1>
-      <CreateProduct setMessage={setMessage} />
-      <p className={styles.errorMessage}>{message}</p>
+      <CreateProduct setProductMessage={setProductMessage} />
+      <p
+        className={
+          productMessage.startsWith("Error")
+            ? styles.errorMessage
+            : productMessage && styles.successMessage
+        }
+      >
+        {productMessage}
+      </p>
       <h1 className={styles.heading}>Subcategories</h1>
       <div className={styles.tableContainer}>
         <table className={styles.table}>
@@ -104,7 +114,7 @@ export default function Admin({
                 <td>
                   <DeleteSubcategory
                     subcategoryId={subcategory.subcategory_id}
-                    setMessage={setMessage}
+                    setSubcategoryMessage={setSubcategoryMessage}
                   />
                 </td>
               </tr>
@@ -113,8 +123,16 @@ export default function Admin({
         </table>
       </div>
       <h1>Create Subcategory</h1>
-      <CreateSubcategory setMessage={setMessage} />
-      <p className={styles.errorMessage}>{message}</p>
+      <CreateSubcategory setSubcategoryMessage={setSubcategoryMessage} />
+      <p
+        className={
+          subcategoryMessage.startsWith("Error")
+            ? styles.errorMessage
+            : subcategoryMessage && styles.successMessage
+        }
+      >
+        {subcategoryMessage}
+      </p>
       <h1 className={styles.heading}>Categories</h1>
       <div className={styles.tableContainer}>
         <table className={styles.table}>
@@ -133,7 +151,7 @@ export default function Admin({
                 <td>
                   <DeleteCategory
                     categoryId={category.category_id}
-                    setMessage={setMessage}
+                    setCategoryMessage={setCategoryMessage}
                   />
                 </td>
               </tr>
@@ -142,8 +160,16 @@ export default function Admin({
         </table>
       </div>
       <h1>Create Category</h1>
-      <CreateCategory setMessage={setMessage} />
-      <p className={styles.errorMessage}>{message}</p>
+      <CreateCategory setCategoryMessage={setCategoryMessage} />
+      <p
+        className={
+          categoryMessage.startsWith("Error")
+            ? styles.errorMessage
+            : categoryMessage && styles.successMessage
+        }
+      >
+        {categoryMessage}
+      </p>
       <h1 className={styles.heading}>All Orders</h1>
       {/* add search order feature */}
       <div className={styles.tableContainer}>

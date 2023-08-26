@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "@/styles/admin.module.css";
 
-export default function CreateProduct({ setMessage }) {
+export default function CreateProduct({ setProductMessage }) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -41,10 +41,10 @@ export default function CreateProduct({ setMessage }) {
       });
 
       const data = await response.json();
-      setMessage(data.message); // Display success or error message
+      setProductMessage(data.productMessage); // Display success or error message
     } catch (error) {
       console.error("Error:", error);
-      setMessage("Error creating product");
+      setProductMessage("Error creating product");
     }
   };
 

@@ -1,7 +1,10 @@
 import React from "react";
 import styles from "@/styles/admin.module.css";
 
-export default function DeleteSubcategory({ subcategoryId, setMessage }) {
+export default function DeleteSubcategory({
+  subcategoryId,
+  setSubcategoryMessage,
+}) {
   const handleDeleteSubcategory = async () => {
     try {
       const response = await fetch(
@@ -12,16 +15,16 @@ export default function DeleteSubcategory({ subcategoryId, setMessage }) {
       );
 
       if (response.ok) {
-        setMessage("Subcategory deleted successfully");
+        setSubcategoryMessage("Subcategory deleted successfully");
 
         // Fetch the updated subcategories list here
         // You can call another function or API to update the subcategories list in the Admin component
       } else {
-        setMessage("Error deleting subcategory");
+        setSubcategoryMessage("Error deleting subcategory");
       }
     } catch (error) {
       console.error("Error:", error);
-      setMessage("Error deleting subcategory");
+      setSubcategoryMessage("Error deleting subcategory");
     }
   };
 

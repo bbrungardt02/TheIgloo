@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "@/styles/admin.module.css";
-export default function DeleteProduct({ productId, setMessage }) {
+export default function DeleteProduct({ productId, setProductMessage }) {
   const handleDeleteProduct = async () => {
     try {
       const response = await fetch(`/api/deleteProduct?id=${productId}`, {
@@ -8,16 +8,16 @@ export default function DeleteProduct({ productId, setMessage }) {
       });
 
       if (response.ok) {
-        setMessage("Product deleted successfully");
+        setProductMessage("Product deleted successfully");
 
         // Fetch the updated products list here
         // You can call another function or API to update the products list in the Admin component
       } else {
-        setMessage("Error deleting product");
+        setProductMessage("Error deleting product");
       }
     } catch (error) {
       console.error("Error:", error);
-      setMessage("Error deleting product");
+      setProductMessage("Error deleting product");
     }
   };
 
