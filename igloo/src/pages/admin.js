@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getStaticProps } from "./api/getStaticProps";
 import CreateProduct from "./admin/createProduct";
 import CreateCategory from "./admin/createCategory";
@@ -18,9 +18,78 @@ export default function Admin({
   const [productMessage, setProductMessage] = useState("");
   const [subcategoryMessage, setSubcategoryMessage] = useState("");
   const [categoryMessage, setCategoryMessage] = useState("");
+  const [updatedProducts, setUpdatedProducts] = useState(
+    products.map((product) => ({
+      ...product,
+      updatedPrice: product.price,
+      updatedStock: product.stock_quantity,
+    }))
+  );
+  const handlePriceChange = (e, productId) => {
+    const updatedPrice = e.target.value;
+    setUpdatedProducts((prevProducts) =>
+      prevProducts.map((product) =>
+        product.product_id === productId
+          ? { ...product, updatedPrice }
+          : product
+      )
+    );
+  };
+
+  const handleStockChange = (e, productId) => {
+    const updatedStock = e.target.value;
+    setUpdatedProducts((prevProducts) =>
+      prevProducts.map((product) =>
+        product.product_id === productId
+          ? { ...product, updatedStock }
+          : product
+      )
+    );
+  };
+
+  const handleSaveChanges = async (productId) => {
+    const productToUpdate = updatedProducts.find(
+      (product) => product.product_id === productId
+    );
+
+    try {
+      const response = await fetch(
+        `/api/updateProduct?productId=${productId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            price: parseFloat(productToUpdate.updatedPrice), // Parse the string as a float
+            stock_quantity: parseInt(productToUpdate.updatedStock), // Parse the string as an integer
+          }),
+        }
+      );
+
+      if (response.ok) {
+        setProductMessage("Product updated successfully");
+
+        // Fetch the updated products list here
+        // You can call another function or API to update the products list in the Admin component
+      } else {
+        setProductMessage("Error updating product");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setProductMessage("Error updating product");
+    }
+  };
+
+  const handleEnterKey = (e, productId) => {
+    if (e.key === "Enter") {
+      handleSaveChanges(productId);
+    }
+  };
 
   // add search order feature
   // add search product feature
+
   return (
     <div className={styles.container}>
       <h1 className={styles.heading}>Users</h1>
@@ -69,9 +138,25 @@ export default function Admin({
                 <td>{product.product_id}</td>
                 <td>{product.name}</td>
                 <td>{product.description}</td>
-                <td>{product.price}</td>
+                <td>
+                  <input
+                    type="float"
+                    value={product.updatedPrice}
+                    placeholder={product.price}
+                    onChange={(e) => handlePriceChange(e, product.product_id)}
+                    onKeyDown={(e) => handleEnterKey(e, product.product_id)}
+                  />
+                </td>
                 <td className={styles.imageCell}>{product.image_url}</td>
-                <td>{product.stock_quantity}</td>
+                <td>
+                  <input
+                    type="integer"
+                    value={product.updatedStock}
+                    placeholder={product.stock_quantity}
+                    onChange={(e) => handleStockChange(e, product.product_id)}
+                    onKeyDown={(e) => handleEnterKey(e, product.product_id)}
+                  />
+                </td>
                 <td>{product.subcategory.name}</td>
                 <td>{product.category.name}</td>
                 <td>
