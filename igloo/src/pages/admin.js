@@ -18,6 +18,7 @@ export default function Admin({
   const [productMessage, setProductMessage] = useState("");
   const [subcategoryMessage, setSubcategoryMessage] = useState("");
   const [categoryMessage, setCategoryMessage] = useState("");
+  const [userMessage, setUserMessage] = useState("");
   const [updatedProducts, setUpdatedProducts] = useState(
     products.map((product) => ({
       ...product,
@@ -61,8 +62,8 @@ export default function Admin({
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            price: parseFloat(productToUpdate.updatedPrice), // Parse the string as a float
-            stock_quantity: parseInt(productToUpdate.updatedStock), // Parse the string as an integer
+            price: parseFloat(productToUpdate.updatedPrice),
+            stock_quantity: parseInt(productToUpdate.updatedStock),
           }),
         }
       );
@@ -87,6 +88,36 @@ export default function Admin({
     }
   };
 
+  const handleToggleAdmin = async (userId, isAdmin) => {
+    try {
+      const response = await fetch(
+        `/api/toggleAdmin?userId=${userId}&isAdmin=${isAdmin}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            isAdmin,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        setUserMessage("User updated successfully");
+
+        // Update the users list or user data with the new admin status
+        // You can call another function or API to update the users list in the Admin component
+      } else {
+        setUserMessage("Error toggling admin");
+        console.log("Error toggling admin status");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      setUserMessage("Error toggling admin");
+    }
+  };
+
   // add search order feature
   // add search product feature
 
@@ -101,6 +132,7 @@ export default function Admin({
               <th>Name</th>
               <th>Email</th>
               <th>Admin</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -109,11 +141,34 @@ export default function Admin({
                 <td>{user.id}</td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
-                <td>{user.isAdmin ? "true" : "false"}</td>
+                <td>
+                  <button
+                    className={`${styles.toggleButton} ${
+                      user.isAdmin ? styles.admin : ""
+                    }`}
+                    onClick={() => handleToggleAdmin(user.id, !user.isAdmin)}
+                  >
+                    <div
+                      className={`${styles.toggleSlider} ${
+                        user.isAdmin ? styles.adminSlider : ""
+                      }`}
+                    ></div>
+                  </button>
+                </td>
+                <td>{user.isAdmin ? "Admin" : "User"}</td>
               </tr>
             ))}
           </tbody>
         </table>
+        <p
+          className={
+            userMessage.startsWith("Error")
+              ? styles.errorMessage
+              : userMessage && styles.successMessage
+          }
+        >
+          {userMessage}
+        </p>
       </div>
       <h1 className={styles.heading}>Products</h1>
       {/* add search product feature */}
