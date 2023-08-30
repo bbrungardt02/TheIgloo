@@ -6,6 +6,7 @@ import CreateSubcategory from "./admin/createSubcategory";
 import DeleteProduct from "./admin/deleteProduct";
 import DeleteCategory from "./admin/deleteCategory";
 import DeleteSubcategory from "./admin/deleteSubcategory";
+import ToggleSlider from "./admin/toggleSlider";
 import styles from "../styles/admin.module.css";
 
 export default function Admin({
@@ -19,6 +20,7 @@ export default function Admin({
   const [subcategoryMessage, setSubcategoryMessage] = useState("");
   const [categoryMessage, setCategoryMessage] = useState("");
   const [userMessage, setUserMessage] = useState("");
+  const [updatedUsers, setUpdatedUsers] = useState(users);
   const [updatedProducts, setUpdatedProducts] = useState(
     products.map((product) => ({
       ...product,
@@ -106,8 +108,12 @@ export default function Admin({
       if (response.ok) {
         setUserMessage("User updated successfully");
 
-        // Update the users list or user data with the new admin status
-        // You can call another function or API to update the users list in the Admin component
+        // Update the local state to reflect the API response
+        setUpdatedUsers((prevUsers) =>
+          prevUsers.map((user) =>
+            user.id === userId ? { ...user, isAdmin } : user
+          )
+        );
       } else {
         setUserMessage("Error toggling admin");
         console.log("Error toggling admin status");
@@ -136,24 +142,16 @@ export default function Admin({
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
+            {updatedUsers.map((user) => (
               <tr key={user.id}>
                 <td>{user.id}</td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>
-                  <button
-                    className={`${styles.toggleButton} ${
-                      user.isAdmin ? styles.admin : ""
-                    }`}
+                  <ToggleSlider
+                    isAdmin={user.isAdmin}
                     onClick={() => handleToggleAdmin(user.id, !user.isAdmin)}
-                  >
-                    <div
-                      className={`${styles.toggleSlider} ${
-                        user.isAdmin ? styles.adminSlider : ""
-                      }`}
-                    ></div>
-                  </button>
+                  />
                 </td>
                 <td>{user.isAdmin ? "Admin" : "User"}</td>
               </tr>
