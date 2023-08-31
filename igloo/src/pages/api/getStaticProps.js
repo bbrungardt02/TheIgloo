@@ -47,8 +47,20 @@ export async function getStaticProps() {
     },
   });
 
+  // Convert Date objects to string representations
+  const ordersWithSerializedDates = orders.map((order) => ({
+    ...order,
+    order_date: order.order_date.toISOString(), // Convert to ISO string
+  }));
+
   return {
-    props: { users, products, categories, orders, subcategories },
+    props: {
+      users,
+      products,
+      categories,
+      orders: ordersWithSerializedDates,
+      subcategories,
+    },
     revalidate: 10,
   };
 }

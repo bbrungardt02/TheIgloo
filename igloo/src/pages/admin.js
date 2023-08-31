@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { getStaticProps } from "./api/getStaticProps";
 import CreateProduct from "./admin/createProduct";
 import CreateCategory from "./admin/createCategory";
