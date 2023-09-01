@@ -91,6 +91,7 @@ model Category {
 
 model Order {
   order_id     Int       @id @default(autoincrement()) @map("order_id")
+  order_status String    @default("pending")
   order_date   DateTime
   total_amount Float
   created_at   DateTime  @default(now())
