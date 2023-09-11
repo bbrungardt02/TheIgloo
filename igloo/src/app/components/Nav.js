@@ -118,11 +118,11 @@ export default function Nav() {
             Home
           </div>
         </Link>
-        <Link href="/products">
+        {/* <Link href="/products">
           <div className={styles.navItem} data-active={isActive("/products")}>
             Products
           </div>
-        </Link>
+        </Link> */}
         {/* Admin link /admin needs to be made only accessible to admins */}
         <Link href="/admin">
           <div className={styles.navItem} data-active={isActive("/admin")}>

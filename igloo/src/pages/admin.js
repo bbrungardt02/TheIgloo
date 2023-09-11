@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { getStaticProps } from "./api/getStaticProps";
-import CreateProduct from "./admin/createProduct";
-import CreateCategory from "./admin/createCategory";
-import CreateSubcategory from "./admin/createSubcategory";
-import DeleteProduct from "./admin/deleteProduct";
-import DeleteCategory from "./admin/deleteCategory";
-import DeleteSubcategory from "./admin/deleteSubcategory";
-import ToggleSlider from "./admin/toggleSlider";
+import CreateProduct from "./helper/createProduct";
+import CreateCategory from "./helper/createCategory";
+import CreateSubcategory from "./helper/createSubcategory";
+import DeleteProduct from "./helper/deleteProduct";
+import DeleteCategory from "./helper/deleteCategory";
+import DeleteSubcategory from "./helper/deleteSubcategory";
+import ToggleSlider from "./helper/toggleSlider";
 import styles from "../styles/admin.module.css";
 
 export default function Admin({
