@@ -39,6 +39,9 @@ export default function ProductPage({ product }) {
   return (
     <div>
       <h1>{product.name}</h1>
+      <p>
+        <img src={product.image_url} alt="Item Image" className="w-24" />
+      </p>
       <p>{product.description}</p>
       <p>Price: ${product.price}</p>
       <p>Stock Quantity: {product.stock_quantity}</p>
