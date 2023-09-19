@@ -10,6 +10,23 @@ export default function Nav() {
 
   const { data: session, status } = useSession();
 
+  function handleLogout() {
+    // Store the guest user data in local storage
+    localStorage.setItem("guestUser", JSON.stringify({ name: "Guest" }));
+    signOut();
+
+    // Log the user out
+    // ...
+  }
+
+  function handleLogin() {
+    // Remove the guest user data from local storage
+    localStorage.removeItem("guestUser");
+
+    // Log the user in
+    // ...
+  }
+
   let left = (
     <div className="left">
       <Link href="/">
@@ -76,7 +93,12 @@ export default function Nav() {
     right = (
       <div className="right">
         <Link href="/api/auth/signin">
-          <div className={styles.login} data-active={isActive("/signup")}>
+          <div
+            className={styles.login}
+            data-active={isActive("/signup")}
+            onClick={() => handleLogin}
+          >
+            {" "}
             Log in
           </div>
         </Link>
@@ -157,7 +179,7 @@ export default function Nav() {
             My Orders
           </div>
         </Link>
-        <button className={styles.login} onClick={() => signOut()}>
+        <button className={styles.login} onClick={() => handleLogout}>
           <div>Log out</div>
         </button>
         <style jsx>{`
