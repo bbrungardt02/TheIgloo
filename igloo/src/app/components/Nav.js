@@ -3,30 +3,35 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { signOut, useSession } from "next-auth/react";
 import styles from "@/app/components/Nav.module.css";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Nav() {
   const router = useRouter();
   const isActive = (pathname) => router.pathname === pathname;
+  const uuid = uuidv4();
 
   const { data: session, status } = useSession();
 
-  function handleLogout() {
+  const handleLogout = () => {
     // Store the guest user data in local storage
-    localStorage.setItem("guestUser", JSON.stringify({ name: "Guest" }));
     signOut();
+    localStorage.setItem("guestUser", JSON.stringify({ id: uuid }));
 
     // Log the user out
     // ...
-  }
+  };
 
-  function handleLogin() {
+  const handleLogin = () => {
     // Remove the guest user data from local storage
     localStorage.removeItem("guestUser");
 
+    // Check if the item has been removed
+    const guestUser = localStorage.getItem("guestUser");
+    console.log(guestUser); // Output: null
+
     // Log the user in
     // ...
-  }
-
+  };
   let left = (
     <div className="left">
       <Link href="/">
@@ -179,7 +184,7 @@ export default function Nav() {
             My Orders
           </div>
         </Link>
-        <button className={styles.login} onClick={() => handleLogout}>
+        <button className={styles.login} onClick={() => handleLogout()}>
           <div>Log out</div>
         </button>
         <style jsx>{`
