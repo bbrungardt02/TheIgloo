@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { signOut, useSession } from "next-auth/react";
@@ -12,22 +12,21 @@ export default function Nav() {
 
   const { data: session, status } = useSession();
 
+  useEffect(() => {
+    // Store the guest user data in local storage if there is no session
+    if (!session) {
+      localStorage.setItem("guestUser", JSON.stringify({ id: uuid }));
+    }
+  }, [session]);
+
   const handleLogout = () => {
-    // Store the guest user data in local storage
-    signOut();
-    localStorage.setItem("guestUser", JSON.stringify({ id: uuid }));
-
-    // Log the user out
-    // ...
-  };
-
-  const handleLogin = () => {
-    // Remove the guest user data from local storage
+    // Remove the guest user data from local storage if it exists
     localStorage.removeItem("guestUser");
 
-    // Log the user in
-    // ...
+    // Log the user out
+    signOut();
   };
+
   let left = (
     <div className="left">
       <Link href="/">
