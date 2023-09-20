@@ -50,7 +50,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   isAdmin       Boolean   @default(false)
-
+  isGuest       Boolean   @default(false)
 }
 
 model VerificationToken {

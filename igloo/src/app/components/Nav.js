@@ -25,10 +25,6 @@ export default function Nav() {
     // Remove the guest user data from local storage
     localStorage.removeItem("guestUser");
 
-    // Check if the item has been removed
-    const guestUser = localStorage.getItem("guestUser");
-    console.log(guestUser); // Output: null
-
     // Log the user in
     // ...
   };
@@ -101,7 +97,7 @@ export default function Nav() {
           <div
             className={styles.login}
             data-active={isActive("/signup")}
-            onClick={() => handleLogin}
+            onClick={() => handleLogin()}
           >
             {" "}
             Log in
