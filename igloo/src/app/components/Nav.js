@@ -1,14 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { signOut, useSession } from "next-auth/react";
 import styles from "@/app/components/Nav.module.css";
+import { v4 as uuidv4 } from "uuid";
+import AuthForms from "@/app/components/AuthForms";
 
 export default function Nav() {
   const router = useRouter();
   const isActive = (pathname) => router.pathname === pathname;
+  const uuid = uuidv4();
 
   const { data: session, status } = useSession();
+
+  useEffect(() => {
+    // Store the guest user data in local storage if there is no session
+    if (!session) {
+      localStorage.setItem("guestUser", JSON.stringify({ id: uuid }));
+    }
+  }, [session]);
+
+  const handleLogout = () => {
+    // Remove the guest user data from local storage if it exists
+    localStorage.removeItem("guestUser");
+
+    // Log the user out
+    signOut();
+  };
 
   let left = (
     <div className="left">
@@ -75,9 +93,15 @@ export default function Nav() {
   if (!session) {
     right = (
       <div className="right">
+        <AuthForms />
         <Link href="/api/auth/signin">
-          <div className={styles.login} data-active={isActive("/signup")}>
-            Log in
+          <div
+            className={styles.login}
+            data-active={isActive("/signup")}
+            onClick={() => handleLogin()}
+          >
+            {" "}
+            Log in with GitHub or Google
           </div>
         </Link>
         <style jsx>{`
@@ -157,7 +181,7 @@ export default function Nav() {
             My Orders
           </div>
         </Link>
-        <button className={styles.login} onClick={() => signOut()}>
+        <button className={styles.login} onClick={() => handleLogout()}>
           <div>Log out</div>
         </button>
         <style jsx>{`
